@@ -1,40 +1,3 @@
-<script>
-function mysubmit() {
-    $('#create_customer_first').submit(function(event) { //Trigger on form submit
-        $('#name + .throw_error').empty(); //Clear the messages first
-        $('#success').empty();
-
-            //Validate fields if required using jQuery
-
-       var values = { //Fetch form data
-        'name'  : $('input[name=name_of_company]').val(),
-		'address'  : $('input[name=address]').val(),
-			'name_of_person'  : $('input[name=name_of_person]').val(),
-			//'email'  : $('input[name=email]').val(),
-		'password'  : $('input[name=password]').val(),
-			'insert_instruction'  : $('input[name=insert_instruction]').val() //Store name fields value
-        };
-// var values = $(this).serialize();
-        $.ajax({ //Process the form using $.ajax()
-            type        : 'POST', //Method type
-            url         : 'ajaxcalling.php', //Your form processing file url
-            data        : values, //Forms name
-            dataType    : 'json',
-            success     : function(data) {
-
-            if (!data.success) { //If fails
-                if (data.errors.name) { //Returned if any error from process.php
-                    $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
-                }
-            } else {
-                    $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
-                }
-            }
-        });
-        event.preventDefault(); //Prevent the default submit
-    });
- };
-</script>
 <?php
 include 'include/header.php';
 ?>
@@ -43,7 +6,7 @@ include 'include/header.php';
     <div class="mod-title">Statestik</div>
     <div class="main_div">
         <div class="first_section">
-          <form name="create_customer_first" id="create_customer_first" action="" method="POST">
+          <form name="create_customer_first" id="create_customer_first" action="" method="POST" class="customer">
           <table cellpadding="5" cellspacing="5">
             <tr>
               <td>Name of Company</td>
@@ -100,8 +63,14 @@ include 'include/header.php';
         <div class="third_section">
           <div style="width:100%;float:left;">
             <label>Enter MasteData for Visitian</label>
+	    <form name="create_customer_third" id="create_customer_third" action="" method="POST">
             <table cellpadding="5" cellspacing="5">
-              <tr>
+               <tr>
+                <td>Name :</td>
+                <td><input type="text" name="customer_name" id="customer_name"></td>
+              </tr>
+	      
+	      <tr>
                 <td>Start Time:</td>
                 <td><input type="text" name="start_time" id="start_time"></td>
               </tr>
@@ -125,11 +94,17 @@ include 'include/header.php';
                 <td>Comment :</td>
                 <td><input type="text" name="comment" id="comment"></td>
               </tr>
+              
+	      <tr>
+		<td>
+		    <div style="width:100%;">
+		      <input class="customer_button" onclick="mycreate();" name="create" id="create" type="submit" value="Create" style="float:right;margin-top:5px;">
+		    </div>
+	        </td>
+	       </tr>
             </table>
-            <div style="width:100%;">
-            <input class="customer_button" name="create" id="create" type="submit" value="Create" style="float:right;margin-top:5px;">
-          </div>
-          </div>
+	   </form>
+	  </div>
         </div>
     </div>        
   </div>
@@ -138,3 +113,63 @@ include 'include/header.php';
 <?php
 include 'include/footer.php';
 ?>
+<script>
+function mysubmit()
+    {
+	$('form').submit(function(event) { //Trigger on form submit
+	$('#name + .throw_error').empty(); //Clear the messages first
+	$('#success').empty();
+	
+	    //Validate fields if required using jQuery
+	 var values = $("#create_customer_first").serialize();
+	 //alert(values);
+	//   var info = 'data=' + values;
+	$.ajax(
+	    { //Process the form using $.ajax()
+		type        : 'POST', //Method type
+		url         : 'ajaxcalling.php', //Your form processing file url
+		data        : values, //Forms name
+		success     : function(data)
+		{
+		    if(data)
+		    {
+			
+			$('#create_customer_first')[0].reset();
+			//alert("Recode is Inserted : Successfully");
+			event.preventDefault(); //Prevent the default submit
+		    }
+		}
+	    });
+	
+	});
+    };
+function mycreate()
+    {
+	
+	$('form').submit(function(event) { //Trigger on form submit
+	$('#name + .throw_error').empty(); //Clear the messages first
+	$('#success').empty();
+	
+	    //Validate fields if required using jQuery
+	 var values = $("#create_customer_third").serialize();
+	$.ajax(
+	    { //Process the form using $.ajax()
+		type        : 'POST', //Method type
+		url         : 'ajaxcalling.php', //Your form processing file url
+		data        : values, //Forms name
+		success     : function(data)
+		{
+	
+			 if(data)
+		    {
+			
+			$('#create_customer_third').reset();
+//			alert("Recode is Inserted : Successfully");
+			event.preventDefault(); //Prevent the default submit
+		    }
+		}
+	    });
+	
+	});
+    };
+</script>
