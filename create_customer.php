@@ -1,3 +1,40 @@
+<script>
+function mysubmit() {
+    $('#create_customer_first').submit(function(event) { //Trigger on form submit
+        $('#name + .throw_error').empty(); //Clear the messages first
+        $('#success').empty();
+
+            //Validate fields if required using jQuery
+
+       var values = { //Fetch form data
+        'name'  : $('input[name=name_of_company]').val(),
+		'address'  : $('input[name=address]').val(),
+			'name_of_person'  : $('input[name=name_of_person]').val(),
+			//'email'  : $('input[name=email]').val(),
+		'password'  : $('input[name=password]').val(),
+			'insert_instruction'  : $('input[name=insert_instruction]').val() //Store name fields value
+        };
+// var values = $(this).serialize();
+        $.ajax({ //Process the form using $.ajax()
+            type        : 'POST', //Method type
+            url         : 'ajaxcalling.php', //Your form processing file url
+            data        : values, //Forms name
+            dataType    : 'json',
+            success     : function(data) {
+
+            if (!data.success) { //If fails
+                if (data.errors.name) { //Returned if any error from process.php
+                    $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
+                }
+            } else {
+                    $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
+                }
+            }
+        });
+        event.preventDefault(); //Prevent the default submit
+    });
+ };
+</script>
 <?php
 include 'include/header.php';
 ?>
@@ -45,7 +82,7 @@ include 'include/header.php';
             </tr>
 
             <tr>
-              <td><input class="customer_button" name="first_section" id="first_section" type="submit" value="Save"></td>
+              <td><input class="customer_button"  onclick="mysubmit(this);" name="first_section" id="first_section" type="submit" value="Save"></td>
               <td></td>
             </tr>
           </table>
@@ -66,27 +103,27 @@ include 'include/header.php';
             <table cellpadding="5" cellspacing="5">
               <tr>
                 <td>Start Time:</td>
-                <td></td>
+                <td><input type="text" name="start_time" id="start_time"></td>
               </tr>
 
               <tr>
                 <td>End Time:</td>
-                <td></td>
+                <td><input type="text" name="end_time" id="end_time"></td>
               </tr>
 
               <tr>
                 <td>Flight No:</td>
-                <td></td>
+                <td><input type="text" name="flight_no" id="flight_no"></td>
               </tr>
 
               <tr>
                 <td>Place:</td>
-                <td></td>
+                <td><input type="text" name="place" id="place"></td>
               </tr>
 
               <tr>
                 <td>Comment :</td>
-                <td></td>
+                <td><input type="text" name="comment" id="comment"></td>
               </tr>
             </table>
             <div style="width:100%;">
