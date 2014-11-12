@@ -1,26 +1,18 @@
 <script>
 function mysubmit() {
-    $('#create_customer_first').submit(function(event) { //Trigger on form submit
+    $('form').submit(function(event) { //Trigger on form submit
         $('#name + .throw_error').empty(); //Clear the messages first
         $('#success').empty();
-
-            //Validate fields if required using jQuery
-
-       var values = { //Fetch form data
-        'name'  : $('input[name=name_of_company]').val(),
-		'address'  : $('input[name=address]').val(),
-			'name_of_person'  : $('input[name=name_of_person]').val(),
-			//'email'  : $('input[name=email]').val(),
-		'password'  : $('input[name=password]').val(),
-			'insert_instruction'  : $('input[name=insert_instruction]').val() //Store name fields value
-        };
-// var values = $(this).serialize();
+ var values = $("form#create_customer_first").serialize();
+ var info='save='+values;
+ 
         $.ajax({ //Process the form using $.ajax()
             type        : 'POST', //Method type
             url         : 'ajaxcalling.php', //Your form processing file url
-            data        : values, //Forms name
+            data        : info, //Forms name
             dataType    : 'json',
-            success     : function(data) {
+            success     : function(data)
+			 {
 
             if (!data.success) { //If fails
                 if (data.errors.name) { //Returned if any error from process.php
