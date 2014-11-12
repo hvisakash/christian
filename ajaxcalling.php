@@ -1,11 +1,68 @@
 <?php 
-if(isset($_POST['save'])){
-echo $result=$_POST['save']; die("Hello Braj");
 
-include("connection.php");
-echo json_encode($result);
+if(is_array($_FILES)) {
+	
+    include 'connection.php';
+		$count=0;
+	foreach ($_FILES['upload_images']['name'] as $name => $value)
+	{
+			
+			if(is_uploaded_file($_FILES['upload_images']['tmp_name'][$name]))
+			 {
+			
+					$sourcePath = $_FILES['upload_images']['tmp_name'][$name];
+					
+					$targetPath = "uploads/".$_FILES['upload_images']['name'][$name];
+					
+				move_uploaded_file($sourcePath,$targetPath);
+					$count=$count + 1;
+					 
+					
+					
+							$sql="INSERT INTO `image_tb` (`image_name`, `image_url`) VALUES('$value','$targetPath')";
+							
+							$row = mysql_query($sql) or die(mysql_error());
+					
+			}
+  }		
+	
+echo json_encode($row);
+	
+	
 }
 
+
+/*
+if(isset($_FILES['file']['name'])){
+	
+	include 'connection.php';
+$count=0;
+foreach($_FILES['file']['name'] as $filename){
+	 		
+			$path='uploads/';
+			$tmp=$_FILES['file']['tmp_name'][$count];
+			$path.=$_FILES['file']['name'][$count];
+            	$count=$count + 1;
+			
+			move_uploaded_file($tmp,$path);
+			
+			$sql="INSERT INTO `image_tb` (`image_name`, `image_url`) VALUES('$filename','$path')";
+			//$sql = "INSERT INTO `image_tb`(`image_name`, `image_url`) VALUES('$filename','$path')" or die("Error In Query...!");
+			$row = mysql_query($sql) or die(mysql_error());
+			if($row){
+				echo("Data Input OK");
+		   
+			}
+			else{
+				echo("Data Input Failed");
+			}
+	}
+    
+	return true;
+echo json_encode($row);
+}
+*/
+//CREATE CUSTOMER Name , Company Name , Email , Address
 if(isset($_POST['name_of_company'])){
     
     
@@ -29,6 +86,8 @@ if(isset($_POST['name_of_company'])){
         }
       return true;
     }
+	
+//ALONG USER TABLE Flite _ No	
 if(isset($_POST['customer_name'])){
    
    $customer_name=$_POST['customer_name'];
@@ -50,5 +109,6 @@ if(isset($_POST['customer_name'])){
             echo("<br>Data Input Failed");
         }
     }
+
 
 ?>

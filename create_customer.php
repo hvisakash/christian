@@ -1,33 +1,3 @@
-<script>
-function mysubmit() {
-    $('form').submit(function(event) { //Trigger on form submit
-        $('#name + .throw_error').empty(); //Clear the messages first
-        $('#success').empty();
- var values = $("form#create_customer_first").serialize();
- var info='save='+values;
- 
-        $.ajax({ //Process the form using $.ajax()
-            type        : 'POST', //Method type
-            url         : 'ajaxcalling.php', //Your form processing file url
-            data        : info, //Forms name
-            dataType    : 'json',
-            success     : function(data)
-			 {
-
-            if (!data.success) { //If fails
-                if (data.errors.name) { //Returned if any error from process.php
-                    $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
-                }
-            } else {
-                    $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
-                }
-            }
-        });
-        event.preventDefault(); //Prevent the default submit
-    });
- };
-</script>
-
 <?php
 include 'include/header.php';
 ?>
@@ -81,49 +51,46 @@ include 'include/header.php';
           </table>
           </form>
         </div>
-      <div class="second_section">
-          <div style="width:100%;float:left;">
+    <div class="second_section">
+      <div style="width:100%;float:left;">
 	    <input type="button" name="create_schedule" id="create_schedule" class="customer_button" value="Create Schedule">
-		<div class="upload_images">
-	    <form name="create_customer_second" id="create_customer_second" action="" method="post">
+		<form name="create_customer_second" id="create_customer_second"  method="post" enctype="multipart/form-data" >
+         <div class="upload_images">
+	   
 	      <table cellpadding="5" cellspacing="5">
 		
-		<tr>
-		    <td>
-			<input type="file" name="upload_images_first" id="upload_images_first"/>
-		    </td>
-		</tr>
-		<tr>
-		    <td>
-			<input type="file" name="upload_images_second" id="upload_images_second"/>
-		    </td>
-		</tr>
-		
-		<tr>
-		    <td>
-			<input type="file" name="upload_images_third" id="upload_images_third"/>
-		    </td>
-		</tr>
-		
-		</div>
-		
-		<tr>
-		    <td>
-			<input type="file" name="upload_images_fourth" id="upload_images_fourth"/>
-		    </td>
-		</tr>
-		
-		<tr>
-		    <td>
-			<div style="width:100%;">
-			  <input class="customer_button" name="upload_images" id="upload_images" type="submit" value="Upload" style="float:right;margin-top:5px;">
-			</div>
-		    </td>
-		</tr>
-	       </table>  
-	    </form>
-          </div> 
-        </div>
+            <tr>
+                <td>
+                <input type="file" name="upload_images[]"  style="width:180px; height:30px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <input type="file" name="upload_images[]" style="width:180px; height:30px;"/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                <input type="file" name="upload_images[]" style="width:180px; height:30px;"/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                <input type="file" name="upload_images[]" style="width:180px; height:30px;"/>
+                </td>
+            </tr>
+	     </table> 
+      </div> 
+	  <div style="width:100%;">
+		<input class="customer_button"  onclick="myupload(this);" name="upload_images" id="upload_images" type="submit" value="Upload" style="float:right;margin-top:5px;">
+	  </div>
+		   
+    </form>
+   
+    </div> 
+   </div>
         <div class="third_section">
           <div style="width:100%;float:left;">
             <label>Enter MasteData for Visitian</label>
@@ -180,14 +147,13 @@ include 'include/footer.php';
 <script>
 function mysubmit()
     {
+		//alert("uds");
 	$('form').submit(function(event) { //Trigger on form submit
 	$('#name + .throw_error').empty(); //Clear the messages first
 	$('#success').empty();
 	
 	    //Validate fields if required using jQuery
 	 var values = $("#create_customer_first").serialize();
-	 //alert(values);
-	//   var info = 'data=' + values;
 	$.ajax(
 	    { //Process the form using $.ajax()
 		type        : 'POST', //Method type
@@ -216,6 +182,7 @@ function mycreate()
 	
 	    //Validate fields if required using jQuery
 	 var values = $("#create_customer_third").serialize();
+
 	$.ajax(
 	    { //Process the form using $.ajax()
 		type        : 'POST', //Method type
@@ -229,11 +196,36 @@ function mycreate()
 			
 			$('#create_customer_third').reset();
 //o			alert("Recode is Inserted : Successfully");
-			event.preventDefault(); //Prevent the default submit
+			event.preventDefault();
+			
+			 //Prevent the default submit
 		    }
 		}
 	    });
 	
 	});
     };
+function myupload(ele)
+    { 
+		$( '#create_customer_second' ).submit( function( e ) {
+			
+			//var values=new FormData( this );
+			//alert(values);
+			$.ajax( {
+			  url: 'ajaxcalling.php',
+			  type: 'POST',
+			  data:new FormData(this),
+			  processData: false,
+			  contentType: false,
+			  success     : function(responce)
+		{		location.reload();
+//			$('#create_customer_second')[0].reset();
+//o			alert("Recode is Inserted : Successfully");
+//			event.preventDefault(); //Prevent the default submit
+//		    location.reload();
+		}
+			} );
+			e.preventDefault();
+		  } );
+  };
 </script>
