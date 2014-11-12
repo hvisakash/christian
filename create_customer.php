@@ -51,14 +51,48 @@ include 'include/header.php';
           </table>
           </form>
         </div>
-        <div class="second_section">
+      <div class="second_section">
           <div style="width:100%;float:left;">
-          <input type="button" name="create_schedule" id="create_schedule" class="customer_button" value="Create Schedule">
-          <div class="upload_images"></div>
-          <div style="width:100%;">
-            <input class="customer_button" name="upload_images" id="upload_images" type="submit" value="Upload" style="float:right;margin-top:5px;">
-          </div>
-        </div>
+	    <input type="button" name="create_schedule" id="create_schedule" class="customer_button" value="Create Schedule">
+		<div class="upload_images">
+	    <form name="create_customer_second" id="create_customer_second" action="" method="post">
+	      <table cellpadding="5" cellspacing="5">
+		
+		<tr>
+		    <td>
+			<input type="file" name="upload_images_first" id="upload_images_first"/>
+		    </td>
+		</tr>
+		<tr>
+		    <td>
+			<input type="file" name="upload_images_second" id="upload_images_second"/>
+		    </td>
+		</tr>
+		
+		<tr>
+		    <td>
+			<input type="file" name="upload_images_third" id="upload_images_third"/>
+		    </td>
+		</tr>
+		
+		</div>
+		
+		<tr>
+		    <td>
+			<input type="file" name="upload_images_fourth" id="upload_images_fourth"/>
+		    </td>
+		</tr>
+		
+		<tr>
+		    <td>
+			<div style="width:100%;">
+			  <input class="customer_button" name="upload_images" id="upload_images" type="submit" value="Upload" style="float:right;margin-top:5px;">
+			</div>
+		    </td>
+		</tr>
+	       </table>  
+	    </form>
+          </div> 
         </div>
         <div class="third_section">
           <div style="width:100%;float:left;">
@@ -164,7 +198,7 @@ function mycreate()
 		    {
 			
 			$('#create_customer_third').reset();
-//			alert("Recode is Inserted : Successfully");
+//o			alert("Recode is Inserted : Successfully");
 			event.preventDefault(); //Prevent the default submit
 		    }
 		}
