@@ -61,24 +61,24 @@ include 'include/header.php';
 		
             <tr>
                 <td>
-                <input type="file" name="upload_images[]"  style="width:180px; height:30px;"/>
+                <input type="file" name="upload_images[]"  style="width:197px; height:25px; margin-left: 1px;"/>
                 </td>
             </tr>
             <tr>
                 <td>
-                <input type="file" name="upload_images[]" style="width:180px; height:30px;"/>
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                <input type="file" name="upload_images[]" style="width:180px; height:30px;"/>
+                <input type="file" name="upload_images[]" style="width:197px; height:25px; margin-left: 1px;"/>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                <input type="file" name="upload_images[]" style="width:180px; height:30px;"/>
+                <input type="file" name="upload_images[]" style="width:197px; height:25px; margin-left: 1px;"/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                <input type="file" name="upload_images[]" style="width:197px; height:25px; margin-left: 1px;"/>
                 </td>
             </tr>
 	     </table> 
@@ -145,15 +145,15 @@ include 'include/header.php';
 include 'include/footer.php';
 ?>
 <script>
-function mysubmit()
+function mysubmit(ele)
     {
-		//alert("uds");
+		
 	$('form').submit(function(event) { //Trigger on form submit
 	$('#name + .throw_error').empty(); //Clear the messages first
 	$('#success').empty();
-	
 	    //Validate fields if required using jQuery
 	 var values = $("#create_customer_first").serialize();
+	 //alert(value);
 	$.ajax(
 	    { //Process the form using $.ajax()
 		type        : 'POST', //Method type

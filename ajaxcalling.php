@@ -32,36 +32,6 @@ echo json_encode($row);
 }
 
 
-/*
-if(isset($_FILES['file']['name'])){
-	
-	include 'connection.php';
-$count=0;
-foreach($_FILES['file']['name'] as $filename){
-	 		
-			$path='uploads/';
-			$tmp=$_FILES['file']['tmp_name'][$count];
-			$path.=$_FILES['file']['name'][$count];
-            	$count=$count + 1;
-			
-			move_uploaded_file($tmp,$path);
-			
-			$sql="INSERT INTO `image_tb` (`image_name`, `image_url`) VALUES('$filename','$path')";
-			//$sql = "INSERT INTO `image_tb`(`image_name`, `image_url`) VALUES('$filename','$path')" or die("Error In Query...!");
-			$row = mysql_query($sql) or die(mysql_error());
-			if($row){
-				echo("Data Input OK");
-		   
-			}
-			else{
-				echo("Data Input Failed");
-			}
-	}
-    
-	return true;
-echo json_encode($row);
-}
-*/
 //CREATE CUSTOMER Name , Company Name , Email , Address
 if(isset($_POST['name_of_company'])){
     
