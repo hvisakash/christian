@@ -1,40 +1,41 @@
 <?php
 include 'include/header.php';
+//echo"<pre>";print_r($labels);die("rrrr");
 ?>
 <div id="vis-holder"> 
   <div class="vis">
-    <div class="mod-title">Statestik</div>
+    <div class="mod-title"><?php echo $labels['edit_customer'];?></div>
     <div class="main_div">
         <div class="first_section">
           <form name="create_customer_first" id="create_customer_first" action="" method="POST" class="customer">
           <table cellpadding="5" cellspacing="5">
             <tr>
-              <td>Name of Company</td>
+              <td><?php echo $labels['name'];?> </td>
               <td><input type="text" name="name_of_company" id="name_of_company"></td>
             </tr>
 
             <tr>
-              <td>Address</td>
+              <td><?php echo $labels['address'];?></td>
               <td><input type="text" name="address" id="address" ></td>
             </tr>
 
             <tr>
-              <td>Name of Contact Person</td>
+              <td><?php echo $labels['name_of_contact_person'];?></td>
               <td><input type="text" name="name_of_person" id="name_of_person"></td>
             </tr>
 
             <tr>
-              <td>Email</td>
+              <td><?php echo $labels['email'];?></td>
               <td><input type="email" name="email" id="email"></td>
             </tr>
 
             <tr>
-              <td>Password</td>
+              <td><?php echo $labels['password'];?></td>
               <td><input type="password" name="password" id="password"></td>
             </tr>
 
             <tr>
-              <td colspan="2">Enter Insert Instructions</td>
+              <td colspan="2"><?php echo $labels['enter_insert_instruction'];?></td>
             </tr>
 
             <tr>
@@ -45,7 +46,7 @@ include 'include/header.php';
             </tr>
 
             <tr>
-              <td><input class="customer_button"  onclick="mysubmit(this);" name="update" id="update" type="submit" value="Update"></td>
+              <td><input class="customer_button"  onclick="mysubmit(this);" name="update" id="update" type="submit" value="<?php echo $labels['update'];?>"></td>
               <td></td>
             </tr>
           </table>
@@ -53,7 +54,7 @@ include 'include/header.php';
         </div>
     <div class="second_section">
       <div style="width:100%;float:left;">
-	    <input type="button" name="create_schedule" id="create_schedule" class="customer_button" value="Create Schedule">
+	    <input type="button" name="edit_schedule" id="edit_schedule" class="customer_button" value="<?php echo $labels['update_schedule'];?>">
 		<form name="create_customer_second" id="create_customer_second"  method="post" enctype="multipart/form-data" >
          <div class="upload_images">
 	   
@@ -84,7 +85,7 @@ include 'include/header.php';
 	     </table> 
       </div> 
 	  <div style="width:100%;">
-		<input class="customer_button"  onclick="myupload(this);" name="upload_images" id="upload_images" type="submit" value="Upload" style="float:right;margin-top:5px;">
+		<input class="customer_button"  onclick="myupload(this);" name="upload_images" id="upload_images" type="submit" value="<?php echo $labels['upload'];?>" style="float:right;margin-top:5px;">
 	  </div>
 		   
     </form>
@@ -93,43 +94,43 @@ include 'include/header.php';
    </div>
         <div class="third_section">
           <div style="width:100%;float:left;">
-            <label>Enter MasteData for Visitian</label>
+            <label><?php echo $labels['must_enter_data_for_visitian'];?></label>
 	    <form name="create_customer_third" id="create_customer_third" action="" method="POST">
             <table cellpadding="5" cellspacing="5">
                <tr>
-                <td>Name :</td>
+                <td><?php echo $labels['name'];?></td>
                 <td><input type="text" name="customer_name" id="customer_name"></td>
               </tr>
 	      
 	      <tr>
-                <td>Start Time:</td>
+                <td><?php echo $labels['start_time'];?></td>
                 <td><input type="text" name="start_time" id="start_time"></td>
               </tr>
 
               <tr>
-                <td>End Time:</td>
+                <td><?php echo $labels['end_time'];?></td>
                 <td><input type="text" name="end_time" id="end_time"></td>
               </tr>
 
               <tr>
-                <td>Flight No:</td>
+                <td><?php echo $labels['flight_no'];?></td>
                 <td><input type="text" name="flight_no" id="flight_no"></td>
               </tr>
 
               <tr>
-                <td>Place:</td>
+                <td><?php echo $labels['place'];?></td>
                 <td><input type="text" name="place" id="place"></td>
               </tr>
 
               <tr>
-                <td>Comment :</td>
+                <td><?php echo $labels['comment'];?></td>
                 <td><input type="text" name="comment" id="comment"></td>
               </tr>
               
 	      <tr>
 		<td>
 		    <div style="width:100%;">
-		      <input class="customer_button" onclick="mycreate();" name="update" id="update" type="submit" value="Update" style="float:right;margin-top:5px;">
+		      <input class="customer_button" onclick="mycreate();" name="update" id="update" type="submit" value="<?php echo $labels['update'];?>" style="float:right;margin-top:5px;">
 		    </div>
 	        </td>
 	       </tr>

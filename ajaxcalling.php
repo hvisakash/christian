@@ -20,7 +20,7 @@ if(is_array($_FILES)){
 					 
 					
 					
-							$sql="INSERT INTO `image_tb` (`image_name`, `image_url`) VALUES('$value','$targetPath')";
+							$sql="INSERT INTO `alog_image` (`image_name`, `image_url`) VALUES('$value','$targetPath')";
 							
 							$row = mysql_query($sql) or die(mysql_error());
 					

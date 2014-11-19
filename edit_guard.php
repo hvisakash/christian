@@ -1,14 +1,16 @@
 <?php
 include 'include/header.php';
+echo "<pre>";print_r($labels);die("raam");
 ?>
 <div id="vis-holder"> 
   <div class="vis">
-    <div class="mod-title">Statestik</div>
+    <div class="mod-title"><?php echo $labels['super_user_guard_edit_delete'];?></div>
      <form method="post" action="" class="">
      <div class="esc" align="center">
           <div class="form_container">
             <div class="form_div div1">
              <div class="div2_left">
+             <table><tr>
         	<select name="select_guard">
             	<option value="Select Guard">Select Guard</option>
             </select>

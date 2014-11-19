@@ -1,5 +1,6 @@
 <?php
 include 'include/header.php';
+echo "<pre>";print_r($labels);die("sss");
 ?>
 <div id="vis-holder"> 
   <div class="vis">
