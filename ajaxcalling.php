@@ -1,6 +1,6 @@
 <?php 
 
-if(is_array($_FILES)) {
+if(is_array($_FILES)){
 	
     include 'connection.php';
 		$count=0;
@@ -14,7 +14,8 @@ if(is_array($_FILES)) {
 					
 					$targetPath = "uploads/".$_FILES['upload_images']['name'][$name];
 					
-				move_uploaded_file($sourcePath,$targetPath);
+				    move_uploaded_file($sourcePath,$targetPath);
+					
 					$count=$count + 1;
 					 
 					

@@ -45,7 +45,7 @@ include 'include/header.php';
             </tr>
 
             <tr>
-              <td><input class="customer_button"  onclick="mysubmit(this);" name="first_section" id="first_section" type="submit" value="Save"></td>
+              <td><input class="customer_button"  onclick="mysubmit(this);" name="update" id="update" type="submit" value="Update"></td>
               <td></td>
             </tr>
           </table>
@@ -129,7 +129,7 @@ include 'include/header.php';
 	      <tr>
 		<td>
 		    <div style="width:100%;">
-		      <input class="customer_button" onclick="mycreate();" name="create" id="create" type="submit" value="Create" style="float:right;margin-top:5px;">
+		      <input class="customer_button" onclick="mycreate();" name="update" id="update" type="submit" value="Update" style="float:right;margin-top:5px;">
 		    </div>
 	        </td>
 	       </tr>

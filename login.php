@@ -6,7 +6,7 @@ if(isset($_REQUEST['submit'])){
 }
 
 //Retreving all customer form customer table for showing it into database
-$sql_customer_name="select customer_name from alog_customer";
+$sql_customer_name="select name_of_company from alog_customer";
 $result_customer_name=mysql_query($sql_customer_name);
 
 ?>
@@ -22,7 +22,7 @@ $result_customer_name=mysql_query($sql_customer_name);
                     <?php
                       while($row_customer_name=mysql_fetch_array($result_customer_name)){ 
                     ?>
-                      <option><?php echo $row_customer_name['customer_name']?></option>
+                      <option><?php echo $row_customer_name['name_of_company']?></option>
                     <?php
                       }
                     ?>
