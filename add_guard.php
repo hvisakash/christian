@@ -9,7 +9,7 @@ include 'include/header.php';
           <form name="create_guard_first" id="create_guard_first" action="" method="POST" class="guard">
           <table cellpadding="5" cellspacing="5">
             <tr>
-              <td>Nawn </td>
+              <td><?php echo  $labels['name']?></td>
               <td><input type="text" name="name_of_company" id="name_of_company"></td>
             </tr>
 
