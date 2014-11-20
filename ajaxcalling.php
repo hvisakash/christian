@@ -46,7 +46,7 @@ if(isset($_POST['name_of_company'])){
     
     include 'connection.php';
    
-    $sql = "INSERT INTO `alog_customer`(`name_of_company`, `address`, `name_of_contact_person`, `email`, `password`, `insert_instruction`) VALUES ('$name_of_company', '$address', '$name_of_person', '$email', '$password', '$insert_instruction')";
+    $sql = "INSERT INTO `alog_company`(`name_of_company`, `address`, `name_of_contact_person`, `email`, `password`, `insert_instruction`,`roll`) VALUES ('$name_of_company', '$address', '$name_of_person', '$email', '$password', '$insert_instruction','2')";
     $result = mysql_query($sql) or die(mysql_error());
         if($result){
             echo("Data Input OK");
@@ -71,7 +71,7 @@ if(isset($_POST['customer_name'])){
     
     include 'connection.php';
    
-    $sql = "INSERT INTO `alog_user`(`name`, `start_time`, `end_time`, `flight_no`, `place`, `comment`) VALUES ('$customer_name', '$start_time', '$end_time', '$flight_no', '$place', '$comment')";
+    $sql = "INSERT INTO `alog_customer`(`name`, `start_time`, `end_time`, `flight_no`, `place`, `comment`) VALUES ('$customer_name', '$start_time', '$end_time', '$flight_no', '$place', '$comment')";
     $result = mysql_query($sql) or die(mysql_error());
         if($result){
             echo("<br>Data Input OK");

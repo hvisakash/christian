@@ -9,25 +9,26 @@
 </script>
 <?php
 include 'include/header.php';
+//echo "<pre>";print_r($labels);die;
 ?>
 <div id="vis-holder"> 
   <div class="vis">
-    <div class="mod-title">Godkende Oversigt</div>
+    <div class="mod-title"><?php echo $labels['approve_overview'];?></div>
     <div class="main_div">
     <div class="first_section">
           <form name="create_customer_first" id="create_customer_first" action="" method="POST" class="customer">
           <table cellpadding="5" cellspacing="5">
             
             <tr>
-              <td><button class="customer_textarea" title="vises hvor mange rapporter , der afventer godkendt">VIS SCANDIL</button>     </td>
+              <td><button class="customer_textarea" title="vises hvor mange rapporter , der afventer godkendt"><?php echo $labels['show_scandil'];?></button>     </td>
             </tr>
            
             <tr>
-              <td><button class="customer_textarea">VIS COMPANYS</button></td>
+              <td><button class="customer_textarea"><?php echo $labels['show_companys'];?></button></td>
             </tr>
             
             <tr>
-              <td><button class="customer_textarea">VIS SCANDIL PALACE</button></td>
+              <td><button class="customer_textarea"><?php echo $labels['show_scandil_palace'];?></button></td>
             </tr>
 
           </table>

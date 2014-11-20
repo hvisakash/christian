@@ -1,7 +1,6 @@
 <?php
 include 'include/header.php';
-?>
-<head>
+?><head>
 <script>
 function myFunction()
 {
@@ -9,6 +8,7 @@ alert("your record successfully inserted");
 }
 </script>
 </head>
+
 <div id="vis-holder"> 
 <div class="vis">
     <div class="mod-title">Statestik</div>

@@ -10,7 +10,7 @@ include 'include/header.php';
           <form name="create_customer_first" id="create_customer_first" action="" method="POST" class="customer">
           <table cellpadding="5" cellspacing="5">
             <tr>
-              <td><?php echo $labels['name'];?></td>
+              <td><?php echo $labels['name_of_company'];?></td>
               <td><input type="text" name="name_of_company" id="name_of_company"></td>
             </tr>
 

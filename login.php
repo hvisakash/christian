@@ -12,7 +12,7 @@ $result_customer_name=mysql_query($sql_customer_name);
 ?>
 <div id="vis-holder"> 
   <div class="vis">
-    <div class="mod-title">Statestik</div>
+    <div class="mod-title"><?php echo $labels['statistics']?></div>
       <form name="response_frm" method="post" action="" id="response_frm">
         <div class="esc" align="center">
           <div class="form_container">
@@ -28,7 +28,7 @@ $result_customer_name=mysql_query($sql_customer_name);
                     ?>
                 </select>
 
-                 <input type="submit" value="Start" name="submit" class="signup-button">
+                 <input type="submit" value="<?php echo $labels['start']?>" name="submit" class="signup-button">
             </div>
 
           </div>
