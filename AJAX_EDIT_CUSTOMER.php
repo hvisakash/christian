@@ -3,7 +3,7 @@
 if(isset($_POST['id'])){
 	
 	 include 'connection.php';
-	 $sql="select * from alog_customer where id='".$_POST['id']."'";
+	 $sql="select * from alog_company where id='".$_POST['id']."'";
 	 $result=mysql_query($sql);
 	 $row=mysql_fetch_array($result);
 	 //print_r($row);die("rr");

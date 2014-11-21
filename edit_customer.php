@@ -2,13 +2,13 @@
 include 'include/header.php';
 require_once 'connection.php';
 //Functionality Of EDIT CUSTOMER Record
-if(isset($_POST['edit_customer'])){
+if(isset($_POST['company_update'])){
 	
 	//include 'connection.php';
 	
-	if($_POST['customer_name']and $_POST['start_time']and $_POST['end_time']and $_POST['flight_no']and $_POST['place']and $_POST['comment']!=NULL){
+	if($_POST['name_of_company']and $_POST['address']and $_POST['name_of_person']and $_POST['email']and $_POST['password']and $_POST['insert_instruction']!=NULL){
 		
-	$query="update alog_customer set name='".$_POST['customer_name']."',start_time='".$_POST['start_time']."',end_time='".$_POST['end_time']."',flight_no='".$_POST['flight_no']."',place='".$_POST['place']."',comment='".$_POST['comment']."' where id='".$_POST['customer_id']."'";
+	$query="update alog_company set name_of_company='".$_POST['name_of_company']."',address='".$_POST['address']."',name_of_contact_person='".$_POST['name_of_person']."',email='".$_POST['email']."',password='".$_POST['password']."',insert_instruction='".$_POST['insert_instruction']."' where id='".$_POST['company_id']."'";
 	mysql_query($query);		
 	}
 }
@@ -18,8 +18,34 @@ if(isset($_POST['edit_customer'])){
     <div class="mod-title"><?php echo $labels['edit_customer'];?></div>
     <div class="main_div">
         <div class="first_section">
+         <!--SELECT CUSTOMER FOR DROPDOWN LIST-->
+        <form method="post" action="" class="form1 select_customer">
+           <table cellpadding="5" cellspacing="5">
+                <tr>
+                      
+                    <?php //Select Guard For 
+                        //include 'connection.php';
+                    $select="select * from alog_company";
+                    $result=mysql_query($select);?>
+                    <td>
+                 <select name="select_company" id="select_company">
+                        <option value="Select company"><?php echo $labels['name_of_company']; ?></option>
+                         <!--- WHILE LOOP FOR GET CUSTOMER NAME TO ASSIGN-->   
+                       <?php while($name=mysql_fetch_array($result))
+                       {?>
+                  <option value="<?php echo $name['id']?>" id="<?php echo $name['id'];?>"><?php echo $name['name_of_company'];?></option>
+                       <?php }?>
+                 </select> 
+                </td>
+               </tr>
+           </table>
+          </form> 
           <form name="create_customer_first" id="create_customer_first" action="" method="POST" class="customer">
           <table cellpadding="5" cellspacing="5">
+            <tr>
+              
+              <td><input type="hidden" name="company_id" id="company_id"></td>
+            </tr>
             <tr>
               <td><?php echo $labels['name'];?> </td>
               <td><input type="text" name="name_of_company" id="name_of_company"></td>
@@ -57,7 +83,7 @@ if(isset($_POST['edit_customer'])){
             </tr>
 
             <tr>
-              <td><input class="customer_button"  onclick="mysubmit(this);" name="update" id="update" type="submit" value="<?php echo $labels['update'];?>"></td>
+              <td><input class="customer_button"  onclick="mysubmit(this);" name="company_update" id="company_update" type="submit" value="<?php echo $labels['update'];?>"></td>
               <td></td>
             </tr>
           </table>
@@ -104,21 +130,7 @@ if(isset($_POST['edit_customer'])){
     </div> 
    </div>
         <div class="third_section">
-        <!--SELECT CUSTOMER FOR DROPDOWN LIST-->
-        	<form method="post" action="" class="form1 select_customer">
-                <br /><?php //Select Guard For 
-				//include 'connection.php';
-            $select="select * from alog_customer";
-            $result=mysql_query($select);?>
-         <select name="select_customer" id="select_customer">
-            	<option value="Select customer"><?php echo $labels['select_customer']; ?></option>
-                 <!--- WHILE LOOP FOR GET CUSTOMER NAME TO ASSIGN-->   
-               <?php while($name=mysql_fetch_array($result))
-			   {?>
-               <option value="<?php echo $name['id']?>" id="<?php echo $name['id'];?>"><?php echo $name['name'];?></option>
-               <?php }?>
-            </select> 
-      </form> 
+       
       <!--EDIT CUSTOMER WHO SELECTED FROM DROPDOWN LIST -->
           <div style="width:100%;float:left;">
           
@@ -186,8 +198,8 @@ include 'include/footer.php';
 <script type="text/javascript">
 
 $(document).ready(function(){
-$("select#select_customer").change(function(){
-    var id = $("select#select_customer option:selected").attr('value');
+$("select#select_company").change(function(){
+    var id = $("select#select_company option:selected").attr('value');
     var data = 'id=' + id;
 	 $.ajax({
 			type: "POST",
@@ -196,13 +208,13 @@ $("select#select_customer").change(function(){
 			dataType: "json",
 			success: function(data)
                   {
-			 $('#customer_id').val(data.id);
-			 $('#customer_name').val(data.name);
-			 $('#start_time').val(data.start_time);
-			 $('#end_time').val(data.end_time);
-			 $('#flight_no').val(data.flight_no);
-			  $('#place').val(data.place);
-			 $('#comment').val(data.comment);
+			 $('#company_id').val(data.id);
+			 $('#name_of_company').val(data.name_of_company);
+			 $('#address').val(data.address);
+			 $('#name_of_person').val(data.name_of_contact_person);
+			 $('#email').val(data.email);
+			  $('#password').val(data.password);
+			 $('#insert_instruction').val(data.insert_instruction);
 			}
 			}); 
 	
