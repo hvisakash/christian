@@ -1,6 +1,17 @@
 <?php
 include 'include/header.php';
-//echo"<pre>";print_r($labels);die("rrrr");
+require_once 'connection.php';
+//Functionality Of EDIT CUSTOMER Record
+if(isset($_POST['edit_customer'])){
+	
+	//include 'connection.php';
+	
+	if($_POST['customer_name']and $_POST['start_time']and $_POST['end_time']and $_POST['flight_no']and $_POST['place']and $_POST['comment']!=NULL){
+		
+	$query="update alog_customer set name='".$_POST['customer_name']."',start_time='".$_POST['start_time']."',end_time='".$_POST['end_time']."',flight_no='".$_POST['flight_no']."',place='".$_POST['place']."',comment='".$_POST['comment']."' where id='".$_POST['customer_id']."'";
+	mysql_query($query);		
+	}
+}
 ?>
 <div id="vis-holder"> 
   <div class="vis">
@@ -93,10 +104,32 @@ include 'include/header.php';
     </div> 
    </div>
         <div class="third_section">
+        <!--SELECT CUSTOMER FOR DROPDOWN LIST-->
+        	<form method="post" action="" class="form1 select_customer">
+                <br /><?php //Select Guard For 
+				//include 'connection.php';
+            $select="select * from alog_customer";
+            $result=mysql_query($select);?>
+         <select name="select_customer" id="select_customer">
+            	<option value="Select customer"><?php echo $labels['select_customer']; ?></option>
+                 <!--- WHILE LOOP FOR GET CUSTOMER NAME TO ASSIGN-->   
+               <?php while($name=mysql_fetch_array($result))
+			   {?>
+               <option value="<?php echo $name['id']?>" id="<?php echo $name['id'];?>"><?php echo $name['name'];?></option>
+               <?php }?>
+            </select> 
+      </form> 
+      <!--EDIT CUSTOMER WHO SELECTED FROM DROPDOWN LIST -->
           <div style="width:100%;float:left;">
+          
             <label><?php echo $labels['must_enter_data_for_visitian'];?></label>
+            
 	    <form name="create_customer_third" id="create_customer_third" action="" method="POST">
+            
             <table cellpadding="5" cellspacing="5">
+               <tr>
+                <td><input type="hidden" name="customer_id" id="customer_id"></td>
+              </tr>
                <tr>
                 <td><?php echo $labels['name'];?></td>
                 <td><input type="text" name="customer_name" id="customer_name"></td>
@@ -130,7 +163,7 @@ include 'include/header.php';
 	      <tr>
 		<td>
 		    <div style="width:100%;">
-		      <input class="customer_button" onclick="mycreate();" name="update" id="update" type="submit" value="<?php echo $labels['update'];?>" style="float:right;margin-top:5px;">
+		      <input class="customer_button" onclick="mycreate();" name="edit_customer" id="edit_customer" type="submit" value="<?php echo $labels['update'];?>" style="float:right;margin-top:5px;">
 		    </div>
 	        </td>
 	       </tr>
@@ -145,6 +178,38 @@ include 'include/header.php';
 <?php
 include 'include/footer.php';
 ?>
+
+<!-Functionality Of select customer data from alog_customer table through jquey Ajax at action of select tag(select_customer_name)-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery_1.6.1.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+$("select#select_customer").change(function(){
+    var id = $("select#select_customer option:selected").attr('value');
+    var data = 'id=' + id;
+	 $.ajax({
+			type: "POST",
+			url: "AJAX_EDIT_CUSTOMER.php", //Relative or absolute path to response.php file
+			data: data,
+			dataType: "json",
+			success: function(data)
+                  {
+			 $('#customer_id').val(data.id);
+			 $('#customer_name').val(data.name);
+			 $('#start_time').val(data.start_time);
+			 $('#end_time').val(data.end_time);
+			 $('#flight_no').val(data.flight_no);
+			  $('#place').val(data.place);
+			 $('#comment').val(data.comment);
+			}
+			}); 
+	
+    });
+});
+</script>
+	
 <script>
 function mysubmit(ele)
     {
@@ -174,6 +239,7 @@ function mysubmit(ele)
 	
 	});
     };
+	
 function mycreate()
     {
 	
@@ -206,6 +272,7 @@ function mycreate()
 	
 	});
     };
+	
 function myupload(ele)
     { 
 		$( '#create_customer_second' ).submit( function( e ) {

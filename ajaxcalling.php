@@ -1,5 +1,5 @@
 <?php 
-
+//Functionality OF Multiple Image/Files Uploads At The Time Create Customer 
 if(is_array($_FILES)){
 	
     include 'connection.php';
@@ -33,7 +33,7 @@ echo json_encode($row);
 }
 
 
-//CREATE CUSTOMER Name , Company Name , Email , Address
+//Functionality OF Company Profile At The Time Create Customer 
 if(isset($_POST['name_of_company'])){
     
     
@@ -58,7 +58,7 @@ if(isset($_POST['name_of_company'])){
       return true;
     }
 	
-//ALONG USER TABLE Flite _ No	
+//Functionality OF Create Customer 
 if(isset($_POST['customer_name'])){
    
    $customer_name=$_POST['customer_name'];
