@@ -1,15 +1,16 @@
 <?php
 include 'include/header.php';
-require_once 'connection.php';
+//require_once 'connection.php';
 //Functionality Of EDIT CUSTOMER Record
 if(isset($_POST['company_update'])){
 	
-	//include 'connection.php';
+	include 'connection.php';
 	
 	if($_POST['name_of_company']and $_POST['address']and $_POST['name_of_person']and $_POST['email']and $_POST['password']and $_POST['insert_instruction']!=NULL){
 		
 	$query="update alog_company set name_of_company='".$_POST['name_of_company']."',address='".$_POST['address']."',name_of_contact_person='".$_POST['name_of_person']."',email='".$_POST['email']."',password='".$_POST['password']."',insert_instruction='".$_POST['insert_instruction']."' where id='".$_POST['company_id']."'";
-	mysql_query($query);		
+	mysql_query($query);
+ header('location:edit_customer.php');		
 	}
 }
 ?>
@@ -24,9 +25,9 @@ if(isset($_POST['company_update'])){
                 <tr>
                       
                     <?php //Select Guard For 
-                        //include 'connection.php';
+                        include 'connection.php';
                     $select="select * from alog_company";
-                    $result=mysql_query($select);?>
+                    $result=mysql_query($select);//$name=mysql_fetch_array($result);echo"<pre>";print_r($name);die("QQ");?>
                     <td>
                  <select name="select_company" id="select_company">
                         <option value="Select company"><?php echo $labels['name_of_company']; ?></option>

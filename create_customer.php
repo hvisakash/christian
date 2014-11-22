@@ -148,7 +148,7 @@ include 'include/footer.php';
 <script>
 function mysubmit(ele)
     {
-		
+		 
 	$('form').submit(function(event) { //Trigger on form submit
 	$('#name + .throw_error').empty(); //Clear the messages first
 	$('#success').empty();

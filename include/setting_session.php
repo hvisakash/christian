@@ -30,6 +30,8 @@ else if(strpos($actual_link,"create_customer"))
   $_SESSION['page_id']="13";
   else if(strpos($actual_link,"ajaxcalling"))
   $_SESSION['page_id']="14";
+  else if(strpos($actual_link,"delete_approve_show_report"))
+  $_SESSION['page_id']="15";
   
 else{
 	echo "<script>alert('There is no page like this in database');</script>";
