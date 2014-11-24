@@ -22,15 +22,12 @@ if(isset($_POST['delete'])){
   <div class="vis">
     <div class="mod-title"><?php echo $labels['super_user_guard_edit_delete'];?></div>
    	<form method="post" action="" class="form1 select_guard">
-                <br /><?php //Select Guard For 
-            $select="select * from alog_guard";
-            $result=mysql_query($select);?>
+                <br />
          <select name="select_guard" id="select_guard">
             	<option value="Select Guard"><?php echo $labels['select_guard']; ?></option>
                  <!--- WHILE LOOP FOR GET CUSTOMER NAME TO ASSIGN-->   
-               <?php while($name=mysql_fetch_array($result))
-			   {?>
-               <option value="<?php echo $name['id']?>" id="<?php echo $name['id'];?>"><?php echo $name['name'];?></option>
+     <?php $select="select * from alog_guard";$result=mysql_query($select); while($name=mysql_fetch_array($result)){?>
+	            <option value="<?php echo $name['id']?>" id="<?php echo $name['id'];?>"><?php echo $name['name'];?></option>
                <?php }?>
             </select> 
       </form>      
