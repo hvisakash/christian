@@ -115,6 +115,11 @@ die("aa");
             </table>
 			</form> 
           </div>
+          <div align="center" class="approve" >
+          <form >
+          <h1>Hello, Christian</h1>
+          </form>
+          </div>
        </div>   
     </div>        
   </div>
@@ -128,17 +133,27 @@ include 'include/footer.php';
 <script type="text/javascript">
 //show all recode 
 $(document).ready(function() {
-$(".Show_All").hide();
-$(".Confirm").hide();	
-$("#show_all").click(function(){
-$(".Show_All").show();
-$(".Confirm").hide();
-});
-$("#show_confirm").click(function(){
+ $(".Show_All").hide();
+ $(".Confirm").hide();	
+ $(".approve").hide();
+  $("#show_all").click(function(){
+    $(".Show_All").show();
+    $(".Confirm").hide();
+	$(".approve").hide();
+  });
+ $("#show_confirm").click(function(){
 	$(".Show_All").hide();
-$(".Confirm").show();
+	$(".approve").hide();
+    $(".Confirm").show();
+  });
+ $("#show_approve").click(function(){
+	$(".Show_All").hide();
+    $(".Confirm").hide();
+	$(".approve").show();
+	
+  });
+
 });
-    });
 
 
 </script>
