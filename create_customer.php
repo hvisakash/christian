@@ -1,13 +1,22 @@
 <?php
 include 'include/header.php';
-//echo"<pre>";print_r($labels);die("dd");
+
 ?>
+<script>
+function goto()
+{
+   	//alert("HELLO < BRaJ");
+         window.location = 'create_questionary.php';
+   
+}
+    </script>
+
 <div id="vis-holder"> 
   <div class="vis">
     <div class="mod-title">Statestik</div>
     <div class="main_div">
         <div class="first_section">
-          <form name="create_customer_first" id="create_customer_first" action="" method="POST" class="customer">
+          <form name="create_customer_first" id="create_customer_first" method="POST" class="customer">
           <table cellpadding="5" cellspacing="5">
             <tr>
               <td><?php echo $labels['name_of_company'];?></td>
@@ -46,7 +55,7 @@ include 'include/header.php';
             </tr>
 
             <tr>
-              <td><input class="customer_button"  onclick="mysubmit(this);" name="first_section" id="first_section" type="submit" value="<?php echo $labels['save'];?>"></td>
+              <td><input class="customer_button"  onclick="mysubmit(this);" name="first_section" id="first_section" type="button" value="<?php echo $labels['save'];?>"></td>
               <td></td>
             </tr>
           </table>
@@ -54,7 +63,7 @@ include 'include/header.php';
         </div>
     <div class="second_section">
       <div style="width:100%;float:left;">
-	    <input type="button" name="create_schedule" id="create_schedule" class="customer_button" value="<?php echo $labels['create_schedule'];?>">
+	    <input type="button" name="create_schedule" id="create_schedule" onclick="goto()" class="customer_button" value="<?php echo $labels['create_schedule'];?>">
 		<form name="create_customer_second" id="create_customer_second"  method="post" enctype="multipart/form-data" >
          <div class="upload_images">
 	   
@@ -146,34 +155,50 @@ include 'include/header.php';
 include 'include/footer.php';
 ?>
 <script>
+
 function mysubmit(ele)
     {
-		 
-	$('form').submit(function(event) { //Trigger on form submit
-	$('#name + .throw_error').empty(); //Clear the messages first
-	$('#success').empty();
 	    //Validate fields if required using jQuery
 	 var values = $("#create_customer_first").serialize();
-	 //alert(value);
 	$.ajax(
 	    { //Process the form using $.ajax()
 		type        : 'POST', //Method type
 		url         : 'ajaxcalling.php', //Your form processing file url
+		dataType:'json',
 		data        : values, //Forms name
 		success     : function(data)
 		{
-		    if(data)
-		    {
-			
-			$('#create_customer_first')[0].reset();
-			//alert("Recode is Inserted : Successfully");
-			event.preventDefault(); //Prevent the default submit
-		    }
+				alert("data save successfully....!");
 		}
-	    });
-	
-	});
-    };
+	 });
+
+ }
+/*
+//callback handler for form submit
+$("#create_customer_first").submit(function(e)
+{
+    var postData = $(this).serialize();
+    $.ajax( {
+         url: "a.php",
+			  type: 'POST',
+			  data:postData,
+			  processData: false,
+			  contentType: false,
+			  success     : function(responce)
+        {
+            //data: return data from server
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            //if fails     
+        }
+    });
+    e.preventDefault(); //STOP default action
+    e.unbind(); //unbind. to stop multiple form submit.
+});
+
+
+*/
 function mycreate()
     {
 	
@@ -183,7 +208,7 @@ function mycreate()
 	
 	    //Validate fields if required using jQuery
 	 var values = $("#create_customer_third").serialize();
-   
+  
 	$.ajax(
 	    { //Process the form using $.ajax()
 		type        : 'POST', //Method type
@@ -229,4 +254,5 @@ function myupload(ele)
 			e.preventDefault();
 		  } );
   };
-</script>
+  
+ </script>

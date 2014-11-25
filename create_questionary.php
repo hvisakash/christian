@@ -4,17 +4,9 @@ include 'include/header.php';
 
 if(isset($_POST['save']))
     {   
-	
-	    if($_POST['comment']==NULL)
-	    {
-			header('location: create_questionary.php');	
-		}
-		else
-		{
-			$sql="insert into alog_questionary(questionary,yes,no) values('".$_POST['comment']."','yes','no')";
+	    	$sql="insert into alog_questionary(questionary,yes,no) values('".$_POST['comment']."','yes','no')";
 			mysql_query($sql);
 			header('location: create_questionary.php');
-		}
 	}
 ?>
 <div id="vis-holder"> 
@@ -39,9 +31,13 @@ if(isset($_POST['save']))
               <div class="fotter_button2" style="text-align:center; padding:160px;">
              <input class="signup-button1" type="submit" name="save" id="save"  value="<?php echo $labels['save'];?>" />
               </div>
+              
+             </form> 
         </div>
       </div>  
-     </form>      
+      <button> </button>
+     
+        
    </div>
   </div>
 </div>  

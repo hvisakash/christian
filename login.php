@@ -2,13 +2,12 @@
 include 'include/header.php';
 if(isset($_REQUEST['submit'])){
   $_SESSION['customer_name']=$_REQUEST['select_customer'];
-  header('Location:signup.php');
+  header('Location:overview.php');
 }
 
 //Retreving all customer form customer table for showing it into database
-$sql_customer_name="select name_of_company from alog_customer";
+$sql_customer_name="select name_of_company from alog_company";
 $result_customer_name=mysql_query($sql_customer_name);
-
 ?>
 <div id="vis-holder"> 
   <div class="vis">
@@ -20,9 +19,11 @@ $result_customer_name=mysql_query($sql_customer_name);
               <label><?php echo $labels['customer_name']?></label><br>
                 <select name="select_customer" id="select_customer" class="midium_select"> 
                     <?php
-                      while($row_customer_name=mysql_fetch_array($result_customer_name)){ 
+                     while($row=mysql_fetch_array($result_customer_name))
+					{
+						 
                     ?>
-                      <option><?php echo $row_customer_name['name_of_company']?></option>
+                      <option><?php echo $row['name_of_company']?></option>
                     <?php
                       }
                     ?>

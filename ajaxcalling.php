@@ -1,6 +1,6 @@
 <?php 
 //Functionality OF Multiple Image/Files Uploads At The Time Create Customer 
-if(is_array($_FILES)){
+if(isset($_REQUEST['upload_images'])){
 	
     include 'connection.php';
 		$count=0;
@@ -35,8 +35,6 @@ echo json_encode($row);
 
 //Functionality OF Company Profile At The Time Create Customer 
 if(isset($_POST['name_of_company'])){
-    
-    
     $name_of_company=$_POST['name_of_company'];
     $address=$_POST['address'];
     $name_of_person=$_POST['name_of_person'];
@@ -48,14 +46,7 @@ if(isset($_POST['name_of_company'])){
    
     $sql = "INSERT INTO `alog_company`(`name_of_company`, `address`, `name_of_contact_person`, `email`, `password`, `insert_instruction`) VALUES ('$name_of_company', '$address', '$name_of_person', '$email', '$password', '$insert_instruction')";
     $result = mysql_query($sql) or die(mysql_error());
-        if($result){
-            echo("Data Input OK");
-       
-        }
-        else{
-            echo("Data Input Failed");
-        }
-      return true;
+    	echo json_encode($result);
     }
 	
 //Functionality OF Create Customer 

@@ -54,6 +54,12 @@ function redirect_approve(page)
 <div id="vis-holder"> 
   <div class="vis">
     <div class="mod-title"><?php echo $labels['overview'];?></div>
+     <label>Cutomer Name:</label>
+      <?php
+        if(isset($_SESSION['customer_name'])){
+          echo $_SESSION['customer_name'];
+        }
+      ?>
      <form method="post" action="" class="">
        <div class="esc" align="center">
           <div class="form_container">
