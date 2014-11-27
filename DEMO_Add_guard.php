@@ -36,7 +36,7 @@ require_once 'connection.php';
       ?>
     <div class="main_div" >
         
-          <form name="create_guard_first"  method="POST" class="guard">
+          <form name="create_guard_first" id="create_guard_first" action="" method="POST" class="guard">
           <div class="first_section" >
           <div class="table add_guard">
           <table cellpadding="15" cellspacing="5">
@@ -62,33 +62,33 @@ require_once 'connection.php';
             
 			<tr>
               <td><?php echo $labels['customer_name'];?></td>
-              <td>
-            
+              <td><input type="text" name="customer_name" id="customer_name"/></td>
+              <td><input type="hidden" name="customer_id" id="customer_id"/></td>
+              <td><button class="customer_button" name="reset" id="reset" >reset</button> </td>
+            </tr>
             <tr>
               <td><input class="customer_button" name="create_guard" id="create_guard" type="submit" value="<?php echo $labels['create'];?>"></td>
               <td></td>
             </tr>
           </table>
           </div>
-          </form>
-          <div align="center" class="cls">
-            	</div>
           </div>
-          <div class="table select_customer" style="text-align:center">
+          <div class="table select_customer" style="text-align:">
            <table>
            		<tr>
               <td>
-              <select name="select_customer" id="selnm" >
-                <option><?php echo $labels['customer_name'];?></option>
+              <select name="select_customer" id="select_customer" onchange="getValue(this);">
+              <option value=""><?php echo $labels['select_customer'];?></option>
+            <!--- WHILE LOOP FOR GET CUSTOMER NAME TO ASSIGN-->   
                <?php while($name=mysql_fetch_array($result))
 			   {?>
-               <option value="<?php echo $name['name']?>" id="<?php echo $name['id']?>"><?php echo $name['name'];?></option>
+               <option value="<?php echo $name['id']?>" id="<?php echo $name['id'];?>"><?php echo $name['name'];?></option>
                <?php }?>
               </select></td>
             </tr>	
            </table>
           </div>
-         
+          </form>
        
         </div>
        </div>
@@ -99,40 +99,32 @@ require_once 'connection.php';
 <?php
 include 'include/footer.php';
 ?>
+<script>
+//function rset()
+   //  {  
+	///	document.getElementById('customer_name').reset();
+    // }
+function getValue(ele)
+	{
+		//select text=name from selecting option 
+		var values= $("#select_customer option:selected").html();
+		//select value=id from selecting option
+		var id = document.getElementById('select_customer').value;
+		//Assign value textfield_1=name from selecting option
+		document.getElementById('customer_name').value=values;
+		//Assign value textfield_2(Type=='hidden')=id from selecting option
+		document.getElementById('customer_id').value=id;
+		document.getElementById('my').value=id;
+		
+	}
+</script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-$(document).ready(function()
-{ 
-  var count=1;
-  $("#selnm").change(function()
-		  {
-			  
-			 var values=$("#selnm").val();
-		     {
-			$('div.cls').append('<tr><td class="para">'+values+'</td><td><input name="" type="button" value="X" id="demo"/></td><input type="hedden" name=""  value=""></tr>');
-			count++;
-			}
-	   });
-	/*$("div.cls").on("click",".para",function(){
-					 alert($(this).index());
-					 var value =$(this).index();
-					//alert(value);
-					 value++;
-					 $(".para").val(value);
-				});
-			
-	*/
-
-	var id;
-	$("#selnm").change(function(e)
-	{
-		
-	    id=this.id;
-		alert(id);
-	});
-	
+$(document).ready(function(){
+  $("button").click(function(){
+	  //alert("braj");
+    $('#customer_name').reset();
+  });
 });
-
 </script>
-	

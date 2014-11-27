@@ -6,7 +6,12 @@ include 'connection.php';
 <div id="vis-holder"> 
   <div class="vis">
     <div class="mod-title"><?php echo $labels['search_customer'];?></div>
-    
+     <label>Cutomer Name:</label>
+      <?php
+        if(isset($_SESSION['customer_name'])){
+          echo $_SESSION['customer_name'];
+        }
+      ?>
           <div class="form_container">
             <div class="form_div div1">
              <div class="div2_left">
