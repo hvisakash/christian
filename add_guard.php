@@ -92,8 +92,6 @@ require_once 'connection.php';
             </tr>	
            </table>
           </div>
-         
-       
         </div>
        </div>
     </div>
@@ -104,15 +102,12 @@ require_once 'connection.php';
 include 'include/footer.php';
 ?>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 <script>
 
 $(document).ready(function()
 {  
-$(".remove").click(function(){
-		
-		 alert($(this).attr("value"));
-		});
+
 	var count=1;
 	$("#selnm").change(function()
 	{
