@@ -37,10 +37,7 @@ function redirect_guard(page)
     {
         window.location = 'edit_guard.php';
     }
-	else if (page == 'login')
-    {
-        window.location = 'login_guard.php';
-    }
+	
 	
 }
 
@@ -84,8 +81,7 @@ function redirect_approve(page)
                     <option ><?php echo $labels['guard'];?></option>
                     <option value="create"><?php echo $labels['create'];?></option>
                     <option value="edit"><?php echo $labels['edit'];?></option>
-                    <option value="login">Login</option>
-                </select>
+                    </select>
              </div>
              <div class="div2_right">
      <!----Functionality Of Redirect To Approve_show_report(Approve) Page ----->        	
