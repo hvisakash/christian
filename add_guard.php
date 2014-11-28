@@ -11,16 +11,23 @@ require_once 'connection.php';
 	$sel_id=$_POST['sel_id'];
 			//Check If All Input Field Are Empty At The Time Of Guard Creation 
 		      if(($_POST['name']and $_POST['surname']and $_POST['email']and $_POST['password']!=NULL)){
+			$sql="insert into alog_guard(name,surname,email,password) values('".$_POST['name']."','".$_POST['surname']."','".$_POST['email']."','".$_POST['password']."')";
+			mysql_query($sql);
+			$guard_id = mysql_insert_id();
+			
 		foreach($sel_id as $customer_id)
 		{
-			$sql="insert into alog_guard(name,surname,email,password,customer_id) values('".$_POST['name']."','".$_POST['surname']."','".$_POST['email']."','".$_POST['password']."','".$customer_id."')";
-			$res=mysql_query($sql);
+		    $sql="insert into alog_gard_customer_relationship(customer_id,guard_id) values('".$customer_id."','".$guard_id."')";
+		    mysql_query($sql);
 		}
 		//If Successfully Guard Created	
-			  if($res==1)
+			  if($guard_id)
 			    {
-					echo "Record is Inserted"; 
-				}
+					?><script>
+					    
+					    alert("Record is inserted");
+					</script>
+					<?php }
 		//If There Is Some Problem		
 			else{
 				}
@@ -41,7 +48,7 @@ require_once 'connection.php';
           <div class="first_section" >
           <div class="table add_guard">
  			<form method="post">
-          <table cellpadding="15" cellspacing="5">
+          <table cellpadding="15" cellspacing="5" class='tab'>
             <tr>
               <td><?php echo  $labels['name']?></td>
               <td><input type="text" name="name" id="name"></td>
@@ -66,6 +73,7 @@ require_once 'connection.php';
               <td><?php echo $labels['customer_name'];?></td>
               <td>
               <div align="center" class="cls">
+		
              </div>
               </td>
             
@@ -83,10 +91,10 @@ require_once 'connection.php';
            		<tr>
               <td>
               <select name="select_customer" id="selnm" >
-                <option><?php echo $labels['customer_name'];?></option>
+		<option>Customer Name</option>
                <?php while($name=mysql_fetch_array($result))
 			   {?>
-               <option value="<?php echo $name['id']?>" ><?php echo $name['name'];?></option>
+                <option value="<?php echo $name['id']?>" ><?php echo $name['name'];?></option>
                <?php }?>
               </select></td>
             </tr>	
@@ -101,23 +109,19 @@ require_once 'connection.php';
 <?php
 include 'include/footer.php';
 ?>
-
-
 <script>
-
 $(document).ready(function()
 {  
-
-	var count=1;
 	$("#selnm").change(function()
 	{
 		var id=$("#selnm option:selected" ).val();
 		var value=$("#selnm option:selected" ).text();
 		//alert(value);
-		$('div.cls').append('<tr><td class="para">'+value+'</td><td><input name="remove" value="X" type="button" class="remove"></td><td><input name="sel_id[]" type="hidden"  value="'+id+'"/></td></tr>');
-
+		$('div.cls').append('<tr class="tr_id" value="'+id+'" id="'+id+'"><td class="para">'+value+'</td><td><input name="remove" value="X" type="button" class="remove" ></td><td><input name="sel_id[]" type="hidden"  value="'+id+'"/></td></tr>');
+		$("#selnm option:selected" ).remove();
+		
 	});
-	
+
 });
 </script>
 	

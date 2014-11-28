@@ -76,7 +76,6 @@ include 'connection.php';
 include 'include/footer.php';
 ?>
 <script type="text/javascript">
-<!----Functionality Of Redirect To Approve_show_report(Approve) Page -----> 
 function redirect(page)
 {
    
