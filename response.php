@@ -27,7 +27,7 @@ if(isset($_POST['start'])){
       <?php
         if(isset($_SESSION['customer_name'])){
           echo $_SESSION['customer_name'];
-		  echo $_SESSION['customer_id'];
+		  $_SESSION['customer_id'];
 		 }
 		 
       ?>

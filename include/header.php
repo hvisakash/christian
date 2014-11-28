@@ -2,7 +2,6 @@
 //including connection file
 require_once 'connection.php';
 require_once 'include/setting_session.php';
-
 $_SESSION['default_language']="2";
 
 //ajax request for setting session
@@ -35,13 +34,6 @@ while($row=mysql_fetch_array($result)){
 <link href="css/style.css" rel="stylesheet" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
-<script>
-$(document).ready(function(){
-  $('body').on('click', '.remove', function() {
-    alert(' hrer');
-  });
-});
-</script>
 </head>
 <body id="home">
   <div id="wrapper">
