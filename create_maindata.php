@@ -17,7 +17,7 @@ include 'connection.php';
   <label>Cutomer Name:</label>
       <?php
         if(isset($_SESSION['customer_name'])){
-          echo $_SESSION['customer_name'];
+          echo $_SESSION['customer_name']= $customer['name_of_company'];
         }
       ?>
       
@@ -74,7 +74,6 @@ include 'connection.php';
 include 'include/footer.php';
 ?>
 <script type="text/javascript">
-<!----Functionality Of Redirect To Approve_show_report(Approve) Page -----> 
 function redirect(page)
 {
    

@@ -38,7 +38,10 @@ while($row=mysql_fetch_array($result)){
 <script>
 $(document).ready(function(){
   $('body').on('click', '.remove', function() {
-    alert(' hrer');
+var a=$(this).parent().parent().text();
+var newOption = "<option value='"+$(this).val()+"'>"+a+"</option>"; 
+$("#selnm").append(newOption);
+$(this).parent().parent().remove();
   });
 });
 </script>
