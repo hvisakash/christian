@@ -17,7 +17,9 @@ include 'connection.php';
   <label>Cutomer Name:</label>
       <?php
         if(isset($_SESSION['customer_name'])){
-          echo $_SESSION['customer_name'];
+          echo $_SESSION['customer_name'];//=$customer['name_of_company'];
+		  $_SESSION['customer_id']=$customer['id'];
+		  
         }
       ?>
       
@@ -50,7 +52,7 @@ include 'connection.php';
             </tr>
 
             <tr>
-              <td colspan="2">Instruction</td>
+              <td colspan="2">Insert Instruction</td>
             </tr>
 
             <tr>
