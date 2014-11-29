@@ -42,6 +42,15 @@ var newOption = "<option value='"+$(this).val()+"'>"+a+"</option>";
 $("#selnm").append(newOption);
 $(this).parent().parent().remove();
   });
+  
+  $(document).ready(function(){
+$(".link").click(function(){
+var name = $(".name").val();
+});
+
+});
+					 
+  
 });
 </script>
 </head>

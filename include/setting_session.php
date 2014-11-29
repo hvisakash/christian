@@ -34,6 +34,8 @@ else if(strpos($actual_link,"create_customer"))
   $_SESSION['page_id']="15";
     else if(strpos($actual_link,"create_maindata"))
   $_SESSION['page_id']="16";
+  else if(strpos($actual_link,"logout"))
+  $_SESSION['page_id']="17";
   
 else{
 	echo "<script>alert('There is no page like this in database');</script>";

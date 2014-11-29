@@ -6,7 +6,7 @@ include 'connection.php';
  $select="SELECT * FROM alog_company where id='$id'";
  $result = mysql_query($select);
  $customer=mysql_fetch_array($result);
-//echo "<pre>";print_r($customer);die("HELLO");
+ //echo "<pre>";print_r($customer);die("HELLO");
 ?>
    
 <div id="vis-holder"> 
@@ -15,12 +15,11 @@ include 'connection.php';
      <div class="first_section">
      
   <label>Cutomer Name:</label>
-      <?php
+      <?php //session_start();
         if(isset($_SESSION['customer_name'])){
-          echo $_SESSION['customer_name']=$customer['name_of_company'];
-		// echo $_SESSION['customer_id']=$customer['id'];
-		  
-        }
+			echo $_SESSION['customer_name']=$customer['name_of_company'];
+		    //echo $_SESSION['customer_id']=$customer['id'];
+		 }
       ?>
       
       <br />
@@ -78,9 +77,6 @@ include 'include/footer.php';
 <script type="text/javascript">
 function redirect(page)
 {
-   
-		//alert(page);
-         window.location = 'response.php';
-  
+    window.location = 'response.php';
 }
     </script>
