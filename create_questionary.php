@@ -2,11 +2,25 @@
 include 'include/header.php';
 //echo "<pre>";print_r($labels);die("HELLO");
 //Functionality Of Post All Questionary To Response Page   
+//if(isset($_POST['Se_Schema']))
+	//{
+	//$comment = (array)$_POST['comment'];
+	//$_SESSION['optionalText'] = $comment;
+		//foreach($_SESSION['optionalText'] as $key=>$value){	?>
+       <!-- <input type="text" value="<?php //echo $value; ?>"/><br />
+-->        		<?php
+		//}
+
+	//print_r($_SESSION['optionalText']);die("tt");
+	//}
+	
 if(isset($_POST['Se_Schema']))
 	{
 	$comment = (array)$_POST['comment'];
 	$_SESSION['optionalText'] = $comment;
 	}
+	
+
 //Functionaliry Of Save All Questionary Into Database	
 if(isset($_POST['save']))
 {       
@@ -18,6 +32,7 @@ if(isset($_POST['save']))
 		$count++;
 		$sql="insert into alog_questionary(questionary,yes,no) values('$value','yes','no')";
 		mysql_query($sql);
+		
 	}
 }
 ?>
@@ -57,7 +72,7 @@ if(isset($_POST['save']))
              <br />
               <div class="fotter_button2">
              <a href="#link1"  class="link" data-toggle="modal">
-             <input class="signup-button1 link" data-toggle="modal" id="Se_Schema" type="submit" name="Se_Schema" value="<?php echo $labels['se_schema'];?>" style="margin-left:400px"></a>
+             <input class="signup-button1 link" data-toggle="modal" id="Se_Schema" type="submit" name="Se_Schema" value="<?php echo $labels['se_schema'];?>" style="margin-left:400px">	</a>
              <br />
              <br />
              <input class="signup-button1" type="submit" name="save"  value="<?php echo $labels['save'];?>"  style="margin-left:400px" />
@@ -96,18 +111,16 @@ include 'include/footer.php';
 		<div class="modal-content">
 			<div class="modal-header headerBG">
             	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<?php
-				
-				$a=$_SESSION['optionalText'];
-				print_r($a);
-				die("aa");
-				?>
-                <button style="margin-left: 50px;">edit</button></h4>
+                	<?php
+					foreach($_SESSION['optionalText'] as $key=>$value){	?>
+        <input class='a' name="td[]" type="text" value="<?php echo $value; ?>"/><br />
+        		<?php }
+				unset($_SESSION['td']);
+				 ?>
+            
 			</div>
 		</div>
 	</div>
 </div>
 <!--End popup-->
-
-
 

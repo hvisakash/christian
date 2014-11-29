@@ -34,8 +34,6 @@ while($row=mysql_fetch_array($result)){
 <link href="css/style.css" rel="stylesheet" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
-<<<<<<< HEAD
-=======
 <script>
 $(document).ready(function(){
   $('body').on('click', '.remove', function() {
@@ -46,7 +44,6 @@ $(this).parent().parent().remove();
   });
 });
 </script>
->>>>>>> 15f0942b64c13271c8c8bb873dc1dd2b1f71db45
 </head>
 <body id="home">
   <div id="wrapper">
