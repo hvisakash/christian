@@ -1,27 +1,11 @@
 <?php
 include 'include/header.php';
 include 'connection.php';
-
-	$sql="select * from alog_questionary";
+//Functionality Of Fetch New Questionary From Database
+	$sql="select * from alog_questionary aq left outer join alog_approve_response ar on aq.id!=ar.questionary_id";
 	$result=mysql_query($sql);
 	$row=mysql_fetch_row($result);
-	//echo"<pre>";print_r($row);die;
-
-
-/*
-
-$sql="select * from alog_questionary aq inner join alog_approve_response ar where aq.id!=ar.questionary_id ";
-
-alog_questionary
-
-			 $sql="select * from users u inner join vendors_tb vt 
-			 		on u.id=vt.vendors_id 
-					where vt.ban='0' and u.roll='3'";
-
-
- */
-
-//functionality Of save/new questionary In To Database
+//functionality Of save questionary In To Database
 if(isset($_POST['start']))
 	{
 		$query="insert into alog_approve_response(question,response,guard_id,questionary_id) values('".$_POST['question']."','".$_POST['response']."','0','".$row[0]."')";
@@ -34,11 +18,11 @@ if(isset($_POST['start']))
     <div class="mod-title">Statestik</div>
      <label>Cutomer Name:</label>
       <?php
-        if(isset($_SESSION['customer_name'])){
+        if(isset($_SESSION['customer_name']))
+		{
           echo $_SESSION['customer_name'];
 		 
-		 }
-		 
+		}
       ?>
       	<form name="response_frm" method="post" action="" id="response_frm">
         	<div class="esc" align="center">
@@ -54,14 +38,10 @@ if(isset($_POST['start']))
                 </div>
               	
               	<div class="div2_center">
-                 
                 <textarea name="question" class="signup-input" ><?php echo $row[1]; ?></textarea>
-                
-                 
-              	</div>
+                </div>
             	</div>
-
-            	<div class="form_div div3">
+			<div class="form_div div3">
               <input type="text" class="signup-input" ><br>
               <label><?php echo $labels['signature']?></label>
             </div>
