@@ -2,13 +2,14 @@
 include 'include/header.php';
 include 'connection.php';
 //Functionality Of Fetch New Questionary From Database
-	$sql="select * from alog_questionary aq left outer join alog_approve_response ar on aq.id!=ar.questionary_id";
+	$sql="select aq.id,aq.questionary from alog_questionary aq left join alog_approve_response ar on aq.id!=ar.questionary_id";
 	$result=mysql_query($sql);
-	$row=mysql_fetch_row($result);
+	$row=mysql_fetch_array($result);
+	//echo"<pre>";print_r($row);die;
 //functionality Of save questionary In To Database
 if(isset($_POST['start']))
 	{
-		$query="insert into alog_approve_response(question,response,guard_id,questionary_id) values('".$_POST['question']."','".$_POST['response']."','0','".$row[0]."')";
+		$query="insert into alog_approve_response(question,response,questionary_id) values('".$_POST['question']."','".$_POST['response']."','".$row['id']."')";
 		mysql_query($query);
 		header('location: response.php');
 	}
