@@ -9,8 +9,9 @@ if(isset($_POST['Se_Schema']))
 //Functionaliry Of Save All Questionary Into Database	
 if(isset($_POST['save']))
 	{    
-		//print_r($_POST['response']);die;
+		//print_r($_POST['response']);die("deepak");
 		$array=explode("$$$$$",$_POST['allQuestionVal']);
+		//print_r($array);die("braj");
 		$count=0;
 		foreach($array as $key => $value)
 		{
@@ -82,25 +83,25 @@ include 'include/footer.php';
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-         var x = 1; //initlal text box count
-         $('#add').click(function(e){ //on add input button click
-              e.preventDefault();
-				var oldVal = $("#allQuestionVal").val();
-				var currentVal = $("#commentID").val();
-				if(oldVal === ""){					
-					oldVal += currentVal;
-				}
-				else {
-					oldVal += "$$$$$"+currentVal;
-				}
-				
-				console.log($("#allQuestionVal").val());			
-				$("#allQuestionVal").val(oldVal);
-				console.log($("#allQuestionVal").val());
-				$("#popupTxt").append("<div>"+currentVal+"</div>");
-				$("#commentID").val("");
-		    	console.log();
-		});
+ var x = 1; //initlal text box count
+ $('#add').click(function(e){ //on add input button click
+      e.preventDefault();
+		var oldVal = $("#allQuestionVal").val();
+		var currentVal = $("#commentID").val();
+		if(oldVal === ""){					
+			oldVal += currentVal;
+		}
+		else {
+			oldVal += "$$$$$"+currentVal;
+		}
+		
+		console.log($("#allQuestionVal").val());			
+		$("#allQuestionVal").val(oldVal);
+		console.log($("#allQuestionVal").val());
+		$("#popupTxt").append("<div>"+currentVal+"</div>");
+		$("#commentID").val("");
+    	console.log();
+});
 </script>
 <!--start popup code-->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
