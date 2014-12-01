@@ -8,31 +8,28 @@ require_once 'connection.php';
 //Create Guard Functionality	
     if(isset($_POST['create_guard']))
     {	
-	$sel_id=$_POST['sel_id'];
+	        $sel_id=$_POST['sel_id'];
 			//Check If All Input Field Are Empty At The Time Of Guard Creation 
-		      if(($_POST['name']and $_POST['surname']and $_POST['email']and $_POST['password']!=NULL)){
+		      
 			$sql="insert into alog_guard(name,surname,email,password) values('".$_POST['name']."','".$_POST['surname']."','".$_POST['email']."','".$_POST['password']."')";
 			mysql_query($sql);
 			$guard_id = mysql_insert_id();
 			
-		foreach($sel_id as $customer_id)
-		{
-		    $sql="insert into alog_gard_customer_relationship(customer_id,guard_id) values('".$customer_id."','".$guard_id."')";
-		    mysql_query($sql);
-		}
+			foreach($sel_id as $customer_id)
+			{
+		   		 $sql="insert into alog_gard_customer_relationship(customer_id,guard_id) values('".$customer_id."','".$guard_id."')";
+		   		 mysql_query($sql);
+			}
 		//If Successfully Guard Created	
-			  if($guard_id)
-			    {
-					?><script>
-					    
-					    alert("Record is inserted");
-					</script>
-					<?php }
+			 	 if($guard_id)
+			    	{
+						?><script> alert("Record is inserted");</script><?php 
+					}
 		//If There Is Some Problem		
 			else{
+					?><script> alert("Record Is Not Insert");</script><?php 
 				}
-	    }
-   }
+	}
 ?>
 <div id="vis-holder"> 
   <div class="vis">

@@ -8,7 +8,7 @@ include 'connection.php';
 	//echo"<pre>";print_r($row);die;
 //functionality Of save questionary In To Database
 if(isset($_POST['start']))
-	{
+	{   //print(mysql_insert_id());die;
 		$query="insert into alog_approve_response(question,response,questionary_id) values('".$_POST['question']."','".$_POST['response']."','".$row['id']."')";
 		mysql_query($query);
 		header('location: response.php');
