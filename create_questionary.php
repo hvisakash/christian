@@ -9,6 +9,9 @@ if(isset($_POST['Se_Schema']))
 //Functionaliry Of Save All Questionary Into Database	
 if(isset($_POST['save']))
 	{    
+	$survey_query="insert into alog_survey(survey_name) values('".$_POST['survey_name']."')";
+	mysql_query($survey_query);
+	$survey_id=mysql_insert_id();
 		//print_r($_POST['response']);die("deepak");
 		$array=explode("$$$$$",$_POST['allQuestionVal']);
 		//print_r($array);die("braj");
@@ -16,7 +19,7 @@ if(isset($_POST['save']))
 		foreach($array as $key => $value)
 		{
 			$count++;
-			$sql="insert into alog_questionary(questionary,response) values('$value','".$_POST['response']."')";
+			$sql="insert into alog_questionary(questionary,response,survey_id) values('$value','".$_POST['response']."',$survey_id)";
 			mysql_query($sql);
 		}
 	}
@@ -31,10 +34,14 @@ if(isset($_POST['save']))
 				  		echo $_SESSION['customer_name'];
 					}
 			  ?>
+
      			<div class="main_div" align="center" style="padding:120px;">
-         			<div class="form_div div2">
-           		<!----Start form---->
-              			<form name="response_frm" method="post" id="response_frm">
+         			<form name="response_frm" method="post" id="response_frm">
+  <?php echo $labels['survey_name'];?> :  <input name="survey_name" type="text" placeholder="<?php echo $labels['survey_name'];?>" required autofocus/>
+                  
+                        <div class="form_div div2">
+                    <!----Start form---->
+              			
               	<!---- Start functionality Of yes/no---->
                         	<div class="div2_left">
                 				<input type="radio" name="response" value="YES" required autofocus><?php echo $labels['yes']?></input>
@@ -45,7 +52,7 @@ if(isset($_POST['save']))
                 <!---- End functionality Of yes/no---->
               				<div class="optional_text" align="center">
                	<!--Start Option Text--->
-             					<textarea name="comment[]" id="commentID" class="signup-input name " placeholder="<?php echo $labels['optional_text'];?>"></textarea>
+             					<textarea name="comment[]" id="commentID" class="signup-input name "  placeholder="<?php echo $labels['optional_text'];?>"></textarea>
              				</div>
             	<!--End Option Text --->
               				<div class="fotter_button2" style="text-align:center; margin:center; padding:40px;">
@@ -71,9 +78,10 @@ if(isset($_POST['save']))
              		<!--End Functionality SAVE Button --->
               				</div>
              			<input type="hidden" name="allQuestionVal" id="allQuestionVal" value=""/>
-             	</form> 
- 					<!----END FORM---->
+             
         </div>
+        	</form> 
+ 					<!----END FORM---->
       </div>  
     </div>
   </div>

@@ -5,7 +5,7 @@ include 'include/header.php';
 if(isset($_POST['edit'])){
 	
 	include 'connection.php';
-	$query="update alog_guard set name='".$_POST['name']."',surname='".$_POST['surname']."',email='".$_POST['email']."',password='".$_POST['password']."',customer_id='".$_POST['select_customer']."' where id='".$_POST['id']."'";
+	$query="update alog_guard set name='".$_POST['name']."',surname='".$_POST['surname']."',email='".$_POST['email']."',password='".md5($_POST['password'])."',customer_id='".$_POST['select_customer']."' where id='".$_POST['id']."'";
 	mysql_query($query);
 	}
 
@@ -60,7 +60,7 @@ if(isset($_POST['delete'])){
                <tr>
                       <td><?php echo $labels['password']; ?></td>
                       <td>
-                      <input type="text" name="password" id="password"/>
+                      <input type="password" name="password" id="password"/>
                       </td>
                </tr>
                <tr>

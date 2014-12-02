@@ -11,7 +11,7 @@ require_once 'connection.php';
 	        $sel_id=$_POST['sel_id'];
 			//Check If All Input Field Are Empty At The Time Of Guard Creation 
 		      
-			$sql="insert into alog_guard(name,surname,email,password) values('".$_POST['name']."','".$_POST['surname']."','".$_POST['email']."','".$_POST['password']."')";
+			$sql="insert into alog_guard(name,surname,email,password) values('".$_POST['name']."','".$_POST['surname']."','".$_POST['email']."','".md5($_POST['password'])."')";
 			mysql_query($sql);
 			$guard_id = mysql_insert_id();
 			
